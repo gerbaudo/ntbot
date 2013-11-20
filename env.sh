@@ -3,7 +3,7 @@
 echo "create the chatroom from indico"
 XMPP_PASSWD=""
 XMPP_USERNAME=""
-read    -p "Enter bot xmpp username: " XMPP_USERNAME
+read    -p "Enter username@jabber.cern.ch : " XMPP_USERNAME
 read -s -p "Enter bot xmpp password: " XMPP_PASSWD
 echo ""
 export HUBOT_XMPP_USERNAME="${XMPP_USERNAME}"
