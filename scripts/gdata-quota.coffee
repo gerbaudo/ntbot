@@ -18,7 +18,6 @@ fs             = require 'fs'
 module.exports = (robot) ->
   robot.respond /dugdata/i, (msg) ->
     pwd = process.env.PWD
-    msg.send "path is #{pwd}"
     # ssh gerbaudo@gpatlas2.ps.uci.edu "cat /gdata/atlas/du_atlas" > /tmp/du_atlas
     quota = 9.6*1024
     kb2gb  = 1.0/(1024*1024)
@@ -32,7 +31,6 @@ module.exports = (robot) ->
            continue
         gb = parseInt(tokens[0])*kb2gb
         user = tokens[1]
-        msg.send "[#{i}] : #{user} #{gb} #{tokens.length}"
         if user=='total'
            totalSize = gb
         else
