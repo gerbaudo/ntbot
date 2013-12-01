@@ -2,10 +2,7 @@
 #   Utility commands to show our disk usage on /gdata/atalas
 #
 # Commands:
-#   hubot du gdata
-#   hubot echo <text> - Reply back with <text>
-#   hubot time - Reply with current time
-#   hubot die - End hubot process
+#   hubot dugdata disk udage on gdata
 
 fs             = require 'fs'
 
@@ -35,13 +32,10 @@ module.exports = (robot) ->
            totalSize = gb
         else
            usrSize[user] = gb
-    msg.send "total : #{totalSize} / #{quota}"
+    msg.send "total : #{totalSize.toFixed(2)} / #{quota}"
     topOffenders = {}
     topOffenders[u] = v for u, v of usrSize when v / totalSize > 0.1
     msg.send "topOffenders :"
     for k,u of topOffenders
-        msg.send "#{k} #{u}"
-
-  robot.respond /ICHO (.*)$/i, (msg) ->
-    msg.send msg.match[1]
+        msg.send "#{k} #{u.toFixed(2)}"
 
