@@ -35,7 +35,7 @@ module.exports = (robot) ->
     msg.send "total : #{totalSize.toFixed(2)} / #{quota}"
     topOffenders = {}
     topOffenders[u] = v for u, v of usrSize when v / totalSize > 0.1
-    msg.send "topOffenders :"
+    msg.send "top users :"
     for k,u of topOffenders
         msg.send "#{k} #{u.toFixed(2)}"
 
