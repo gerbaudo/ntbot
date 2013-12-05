@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# use with 
+#
+# source ~/private/Personal\ gerbaudo-openrc.sh
+# nova list
+# nova boot --image 'SLC6 CERN Server - x86_64 [130920]' --flavor m1.medium \
+# --key_name gerbaudo_stackcern --meta cern-services=true \
+# --user_data scl6-lxp-config.txt \
+# myhostname
+#
+# For more info see
+# https://information-technology.web.cern.ch/book/cern-cloud-infrastructure-user-guide/advanced-topics/contextualisation-after-installation
+
+yum install -y cern-config-users
+/usr/sbin/cern-config-users --setup-all
+
+yum install -y krb5-config krb5-user openafs-client openafs-fuse openafs-krb5
+yum install -y screen emacs svn git npm
+yum install -y expat-devel redis
+
