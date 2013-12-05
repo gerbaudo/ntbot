@@ -19,3 +19,26 @@ yum install -y krb5-config krb5-user openafs-client openafs-fuse openafs-krb5
 yum install -y screen emacs svn git npm
 yum install -y expat-devel redis
 
+# Cvmfs: following https://twiki.cern.ch/twiki/bin/view/Atlas/Tier3CVMFS2SLC5
+rpm -Uvh http://cvmrepo.web.cern.ch/cvmrepo/yum/cvmfs/EL/6/i386/cvmfs-release-2-4.el6.noarch.rpm
+yum install -y cvmfs cvmfs-init-scripts cvmfs-auto-setup
+
+cat > /etc/cvmfs/default.local <<EOF
+
+CVMFS_REPOSITORIES=atlas.cern.ch,atlas-condb.cern.ch,atlas-nightlies.cern.ch
+CVMFS_HTTP_PROXY=http://ca-proxy.cern.ch:3128
+
+EOF
+
+cat > /etc/cvmfs/domain.d/cern.ch.local <<EOF
+
+CVMFS_SERVER_URL="http://cvmfs-stratum-one.cern.ch:8000/opt/@org@;http://cernvmfs.gridpp.rl.ac.uk:8000/opt/@org@;http://cvmfs.racf.bnl.gov:8000/opt/@org@"
+
+EOF
+
+cvmfs_config setup
+
+cvmfs_config setup
+cvmfs_config status
+cvmfs_config stat
+cvmfs_config probe
