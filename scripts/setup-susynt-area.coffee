@@ -24,10 +24,8 @@ module.exports = (robot) ->
         ls = spawn 'ls', ['-la']
         ls.stdout.on 'data', (data) -> msg.send data.toString()
         chmod = spawn 'chmod', ['a+x','setup_area.sh']
-        chmod.stdout.on 'data', (data) -> msg.send data.toString().trim()
         ls = spawn 'ls', ['-la']
         ls.stdout.on 'data', (data) -> msg.send "after: #{data.toString()}"
-#        build = spawn 'source', ['setup_area.sh']
-        build = spawn 'source', ['/afs/cern.ch/user/g/gerbaudo/work/public/susy/bot/test.sh']
-        build.stdout.on 'data', (data) -> msg.send data.toString().trim()
-        build.stderr.on 'data', (data) -> msg.send data.toString().trim()
+        build = spawn '/bin/bash', ['/afs/cern.ch/user/g/gerbaudo/work/public/susy/bot/setup_area.sh']
+        build.stdout.on 'data', (data) -> msg.send data.toString()
+        build.stderr.on 'data', (data) -> msg.send data.toString()
