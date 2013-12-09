@@ -18,6 +18,7 @@ yum install -y cern-config-users
 yum install -y krb5-config krb5-user openafs-client openafs-fuse openafs-krb5
 yum install -y screen emacs svn git npm
 yum install -y expat-devel redis
+yum install -y compat-expat1-1.95.8-8.el6.i686 compat-expat1-1.95.8-8.el6.x86_64
 
 # Cvmfs: following https://twiki.cern.ch/twiki/bin/view/Atlas/Tier3CVMFS2SLC5
 rpm -Uvh http://cvmrepo.web.cern.ch/cvmrepo/yum/cvmfs/EL/6/i386/cvmfs-release-2-4.el6.noarch.rpm
