@@ -6,7 +6,7 @@
 # nova list
 # nova boot --image 'SLC6 CERN Server - x86_64 [130920]' --flavor m1.medium \
 # --key_name gerbaudo_stackcern --meta cern-services=true \
-# --user_data scl6-lxp-config.txt \
+# --user_data slc6-lxp-config.txt \
 # myhostname
 #
 # For more info see
