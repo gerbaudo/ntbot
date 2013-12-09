@@ -5,6 +5,7 @@
 #   hubot dugdata disk udage on gdata
 
 fs             = require 'fs'
+{spawn}        = require 'child_process'
 
 # this is not working
 # get_top_5 = (items) ->
@@ -15,10 +16,14 @@ fs             = require 'fs'
 module.exports = (robot) ->
   robot.respond /dugdata/i, (msg) ->
     pwd = process.env.PWD
-    # ssh gerbaudo@gpatlas2.ps.uci.edu "cat /gdata/atlas/du_atlas" > /tmp/du_atlas
     quota = 9.6*1024
     kb2gb  = 1.0/(1024*1024)
-    fileText = fs.readFileSync("/tmp/du_atlas").toString()
+    origin = 'gerbaudo@gpatlas1.ps.uci.edu:/gdata/atlas/du_atlas'
+    dest   = '/tmp/du_atlas'
+    scp = spawn '/bin/bash', ['scp', origin, dest]
+    scp.stdout.on 'data', (data) -> msg.send 'fetching info'
+    scp.stderr.on 'data', (data) -> msg.send data.toString()
+    fileText = fs.readFileSync(dest).toString()
     lines = fileText.split('\n')
     totalSize = 0
     usrSize = {}
